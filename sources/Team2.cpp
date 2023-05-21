@@ -36,7 +36,7 @@ void Team2::attack(Team *enemy) {
             if (target == nullptr)return;
 
             auto *ninja = dynamic_cast<Ninja *>(i);
-            if (target->getLocation().distance(ninja->getLocation()) < 1) {
+            if (target->getLocation().distance(ninja->getLocation()) <= 1) {
                 ninja->slash(target);
             } else {
                 ninja->move(target);
@@ -56,18 +56,6 @@ int Team2::stillAlive() {
         }
     }
     return stillAlive;
-}
-
-void Team2::print() {
-    for (auto &i: getTeam()) {
-        if (i == nullptr) break;
-        if (dynamic_cast<Cowboy *>(i) != nullptr) {
-            i->print();
-        }
-        if (dynamic_cast<Ninja *>(i) != nullptr) {
-            i->print();
-        }
-    }
 }
 
 

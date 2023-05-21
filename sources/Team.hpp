@@ -36,21 +36,5 @@ public:
 };
 
 
-//class SmartTeam : public Team {
-//public:
-//    explicit SmartTeam(Character *leader);
-//
-//    void add(Character *newCharacter) override;
-//
-//    void attack(Team *enemy) override;
-//
-//    int stillAlive() override;
-//
-//    void print() override;
-//
-//    int findNearest(Character* leader) override;
-//
-//};
-
 
 #endif //TEAM_H

@@ -13,8 +13,6 @@ public:
 
     int stillAlive() override;
 
-    void print() override;
-
     Character* closestToLeader(Character* Leader) override;
 };
 

@@ -6,7 +6,7 @@ Cowboy::Cowboy(string name, Point location) : Character(std::move(name), COWBOY_
 void Cowboy::shoot(Character *enemy) {
     if(enemy == this) throw std::runtime_error("why are u hitting yourself");
     //if dead / out of bullet
-    if(!isAlive()) throw std::runtime_error("cant hit  dead-body or while dead");
+    if(!isAlive()) throw std::runtime_error("(cowboy) cant hit while dead");
     if (!hasboolets()) return;
     enemy->hit(COWBOY_DMG);
     bullet--;

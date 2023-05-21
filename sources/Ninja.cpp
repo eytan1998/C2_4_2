@@ -10,8 +10,8 @@ void Ninja::move(Character *enemy) {
 
 void Ninja::slash(Character *enemy) {
     if (enemy == this) throw std::runtime_error("why are u hitting yourself");
-    if (!isAlive()) throw std::runtime_error("cant hit  dead-body or while dead");
-    if (getLocation().distance(enemy->getLocation()) >= 1) return;
+    if (!isAlive()) throw std::runtime_error("(ninja) cant hit while dead");
+    if (getLocation().distance(enemy->getLocation()) > 1) return;
     enemy->hit(NINJA_DMG);
 }
 

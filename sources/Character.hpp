@@ -36,8 +36,8 @@ public:
     }
 
     void hit(int dmg) {
-        if (dmg <= 0) {throw std::invalid_argument("cant dng negative number");}
-        if (!isAlive()) {throw std::runtime_error("cant dng dead-body");}
+        if (dmg <= 0) {throw std::invalid_argument("cant dmg negative number");}
+        if (!isAlive()) {throw std::runtime_error("cant dmg dead-body");}
 
         //not need to kill him more
         if (dmg > hp){ hp = 0;}

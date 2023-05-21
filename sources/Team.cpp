@@ -66,14 +66,13 @@ void Team::attack(Team *enemy) {
     for (auto &i: team) {
         if (i == nullptr) break;
         if (!i->isAlive()) continue;
-
         if (dynamic_cast<Ninja *>(i) != nullptr) {
             //change target if needed
             target = enemy->closestToLeader(getLeader());
             if (target == nullptr)return;
 
             auto *ninja = dynamic_cast<Ninja *>(i);
-            if (target->getLocation().distance(ninja->getLocation()) < 1) {
+            if (target->getLocation().distance(ninja->getLocation()) <= 1) {
                 ninja->slash(target);
             } else {
                 ninja->move(target);
@@ -102,18 +101,23 @@ int Team::stillAlive() {
 }
 
 void Team::print() {
+    const std::type_info& type = typeid(*this);
+
+    cout<<"################"<<type.name()<< " Print################"<<endl;
     for (auto &i: team) {
         if (i == nullptr) break;
         if (dynamic_cast<Cowboy *>(i) != nullptr) {
-            i->print();
+            cout<<i->print();
         }
     }
     for (auto &i: team) {
         if (i == nullptr) break;
         if (dynamic_cast<Ninja *>(i) != nullptr) {
-            i->print();
+            cout<<i->print();
         }
     }
+    cout<<endl;
+
 }
 
 
@@ -123,8 +127,8 @@ Character* Team::closestToLeader(Character *Leader) {
     Character* target = nullptr;
     for (auto &i: team) {
         if (i == nullptr) break;
+        if (!i->isAlive()) continue;//don't target dead
         if (dynamic_cast<Cowboy *>(i) != nullptr) {
-            if (!i->isAlive()) continue;//don't target dead
             if (dis == -1 || i->getLocation().distance(leader_location) < dis) {
                 dis = i->getLocation().distance(leader_location);
                 target = i;
@@ -133,8 +137,8 @@ Character* Team::closestToLeader(Character *Leader) {
     }
     for (auto &i: team) {
         if (i == nullptr) break;
+        if (!i->isAlive()) continue;//don't target dead
         if (dynamic_cast<Ninja *>(i) != nullptr) {
-            if (!i->isAlive())continue;//don't target dead
             if (dis == -1 || i->getLocation().distance(leader_location) < dis) {
                 dis = i->getLocation().distance(leader_location);
                 target = i;
