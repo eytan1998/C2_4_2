@@ -55,13 +55,7 @@ void SmartTeam::attack(Team *enemy) {
                         continue;
                     }
                 }
-                //make bad result
-                // more cowboy don't need to move
-//                if (haveMoreCowboy(enemy)){
-//                    ninja->move(target);
-//                }
 
-                //else need to move
                 ninja->move(target);
                 tmpTeam.erase(std::remove(tmpTeam.begin(), tmpTeam.end(), i), tmpTeam.end());
 
@@ -99,26 +93,6 @@ Character *SmartTeam::closestToLeader(Character *Leader) {
 
     }
     return target;
-}
-
-bool SmartTeam::haveMoreCowboy(Team *enemy) {
-    int mCowboy = 0, tCowboy = 0;
-    //my team
-    for (auto &i: getTeam()) {
-        if (i == nullptr) break;
-        if (dynamic_cast<Cowboy *>(i) != nullptr) {
-            mCowboy++;
-        }
-    }
-    //enemy
-    for (auto &i: enemy->getTeam()) {
-        if (i == nullptr) break;
-        if (dynamic_cast<Cowboy *>(i) != nullptr) {
-            tCowboy++;
-        }
-    }
-
-    return mCowboy >= tCowboy;
 }
 
 Character *SmartTeam::chooseTarget(const vector<Character *> &mTeam, Team *enemy) {
